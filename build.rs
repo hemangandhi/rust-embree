@@ -3,7 +3,8 @@
 use std::path::Path;
 
 fn main() {
-    let wrapperPath = Path::new("external/embree/include/embree4/rtcore.h");
+    let wrapper_path_from_env = std::env::var("RUST_EMBREE_RTCORE_HEADER_PATH").unwrap_or("external/embree/include/embree4/rtcore.h".to_string());
+    let wrapperPath = Path::new(&wrapper_path_from_env);
     let bindingsOutput = "src/bindings_embree.rs";
     let linkLibraryName = "embree4";
 
